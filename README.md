@@ -34,14 +34,52 @@ it to make it cheer. **What does this mean?** shows a legend of every state (the
 one is highlighted), **Details** the score and finding list, and **Deep scan** hands the
 page to SecureLens.
 
-## Install (unpacked)
+## Install in Chrome (unpacked, for development / testing)
 
-```bash
-npm install
-npm run build          # tsc --noEmit + vite build → dist/
-```
+1. Build the extension:
 
-Chrome → `chrome://extensions` → enable *Developer mode* → *Load unpacked* → pick `dist/`.
+   ```bash
+   npm install
+   npm run build          # tsc --noEmit + vite build → dist/
+   ```
+
+2. Open Chrome and go to `chrome://extensions`.
+3. Turn on **Developer mode** (toggle in the top-right corner).
+4. Click **Load unpacked** and select the `dist/` folder of this project.
+5. The puppy icon appears in the toolbar (pin it via the puzzle-piece menu if hidden).
+   Open any site and click the icon to see its grade.
+
+After changing code, run `npm run build` (or keep `npm run dev` running) and press the
+**reload** (↻) button on the extension card in `chrome://extensions`.
+
+## Publish to the Chrome Web Store
+
+1. Bump the version in **both** `package.json` and `public/manifest.json` (the store rejects
+   an upload whose `manifest.json` version is not higher than the published one).
+2. Build and package:
+
+   ```bash
+   npm run zip            # builds, then zips dist/ → securelens-extension.zip
+   ```
+
+   The zip must contain `manifest.json` at its root (the script does this by zipping the
+   *contents* of `dist/`, not the folder itself).
+3. Go to the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole)
+   and sign in. First time only: accept the developer agreement and pay the one-time
+   registration fee.
+4. Click **New Item** → upload `securelens-extension.zip`.
+5. Fill in the listing:
+   - **Store listing**: description, category (Productivity / Developer Tools), at least one
+     1280×800 or 640×400 screenshot, 128×128 icon (already in `public/icons`).
+   - **Privacy**: single purpose description, justification for each permission
+     (`webRequest`, `cookies`, `scripting`, `activeTab`, `storage`, host permissions), and a
+     data-usage disclosure. Note that nothing leaves the browser except the page URL sent to
+     the SecureLens API on an explicit **Deep scan** (see below).
+   - **Distribution**: visibility (Public / Unlisted / Private) and regions.
+6. Click **Submit for review**. Review typically takes from a few hours to a few days; you
+   get an email when it is published or if changes are requested.
+7. To ship an update, repeat steps 1–2, open the item in the dashboard → **Package** →
+   **Upload new package**, then **Submit for review** again.
 
 Deep scans call the SecureLens backend (default `https://securelens-yz6r.onrender.com`); change it in
 the extension's Settings page. "Open full report" links to the SecureLens web app
