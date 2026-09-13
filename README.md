@@ -1,6 +1,6 @@
 # SecureLens Companion — Chrome extension
 
-**Open it on any site and see how strong that site's security is — narrated by a 3D robot-cat.**
+**Open it on any site and see how strong that site's security is — narrated by a 3D robot puppy.**
 
 Companion to [SecureLens](../securelens). The popup grades the active tab instantly from
 what the browser already knows (HTTPS, security headers, HSTS/CSP quality, cookie flags,
@@ -29,9 +29,10 @@ The character is built procedurally from three.js primitives (`src/companion/Com
 poses are pure functions of `(state, time)` in `src/companion/poses.ts` and are blended
 with critically-damped interpolation, so state switches never snap.
 
-> The design is a Doraemon-inspired robot cat. Doraemon is a trademarked character
-> (Fujiko-Pro / Shogakukan) — fine for personal use, but change the look before publishing
-> to the Chrome Web Store.
+The popup opens on the puppy alone: drag left/right (or press ←/→) to turn it around, tap
+it to make it cheer. **What does this mean?** shows a legend of every state (the current
+one is highlighted), **Details** the score and finding list, and **Deep scan** hands the
+page to SecureLens.
 
 ## Install (unpacked)
 
@@ -42,16 +43,17 @@ npm run build          # tsc --noEmit + vite build → dist/
 
 Chrome → `chrome://extensions` → enable *Developer mode* → *Load unpacked* → pick `dist/`.
 
-Deep scans need a running SecureLens backend (default `http://localhost:8000`); change it in
+Deep scans call the SecureLens backend (default `https://securelens-yz6r.onrender.com`); change it in
 the extension's Settings page. "Open full report" links to the SecureLens web app
-(`/scanner/<scan_id>`, default `http://localhost:5173`).
+(`/scanner/<scan_id>`, default `https://securelen.lamnv.com`). For local development point both at
+`http://localhost:8000` / `http://localhost:5173` in Settings.
 
 ## Develop
 
 ```bash
 npm run dev            # vite build --watch → reload the unpacked extension in Chrome
 npm test               # vitest (analyzer + scoring)
-npx vite               # dev server: open http://localhost:5173/popup.html?demo=strong|weak|http
+npx vite --port 5199   # dev server: open http://localhost:5199/popup.html?demo=strong|weak|http
 ```
 
 `?demo=` uses a fake `chrome` object (`src/popup/devMock.ts`, DEV-only, tree-shaken from

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "SecureLens Companion",
   "version": "0.1.0",
-  "description": "See how strong the security of the site you're on is — narrated by a 3D robot-cat. Non-intrusive header, cookie and HTTPS checks; optional deep scan via SecureLens.",
+  "description": "See how strong the security of the site you're on is — narrated by a 3D robot puppy. Non-intrusive header, cookie and HTTPS checks; optional deep scan via SecureLens.",
   "minimum_chrome_version": "110",
   "action": {
     "default_popup": "popup.html",

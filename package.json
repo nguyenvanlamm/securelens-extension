@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Chrome extension: security posture of the current tab, narrated by a 3D robot-cat companion. Companion app to SecureLens.",
+  "description": "Chrome extension: security posture of the current tab, narrated by a 3D robot-puppy companion. Companion app to SecureLens.",
   "scripts": {
     "dev": "vite build --watch --mode development",
     "build": "tsc --noEmit && vite build",

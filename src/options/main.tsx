@@ -39,7 +39,7 @@ function Options() {
           value={s.apiBaseUrl}
           onChange={(e) => setS({ ...s, apiBaseUrl: e.target.value })}
           className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 font-mono text-sm focus:border-black"
-          placeholder="http://localhost:8000"
+          placeholder="https://securelens-yz6r.onrender.com"
           spellCheck={false}
         />
       </label>
@@ -49,7 +49,7 @@ function Options() {
           value={s.webBaseUrl}
           onChange={(e) => setS({ ...s, webBaseUrl: e.target.value })}
           className="mt-1 w-full rounded-md border border-gray-200 px-3 py-2 font-mono text-sm focus:border-black"
-          placeholder="http://localhost:5173"
+          placeholder="https://securelen.lamnv.com"
           spellCheck={false}
         />
       </label>

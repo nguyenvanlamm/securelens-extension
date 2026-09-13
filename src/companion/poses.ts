@@ -9,6 +9,8 @@ export interface Pose {
   armLRotX: number; armLRotZ: number; armRRotX: number; armRRotZ: number;
   eyeOpen: number; pupilX: number; pupilY: number;
   mouthOpen: number; mouthSmile: number;
+  // puppy channels: 0 = ears perked, 1 = fully drooped; tail = wag amount
+  earDroop: number; tail: number;
   tears: number; zzz: number; stars: number; sweat: number; exclaim: number; question: number;
 }
 
@@ -18,6 +20,7 @@ export const REST: Pose = {
   armLRotX: 0, armLRotZ: 0.35, armRRotX: 0, armRRotZ: -0.35,
   eyeOpen: 1, pupilX: 0, pupilY: 0,
   mouthOpen: 0, mouthSmile: 0.4,
+  earDroop: 0.4, tail: 0.3,
   tears: 0, zzz: 0, stars: 0, sweat: 0, exclaim: 0, question: 0,
 };
 
@@ -42,6 +45,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.armRRotX = -1.5; p.armRRotZ = -0.2 + S(t * 4) * 0.08; // holding the lens up
       p.armLRotZ = 0.5;
       p.mouthSmile = 0.15; p.mouthOpen = 0.08;
+      p.earDroop = 0.05; p.tail = 0.45;
       break;
     }
     case 'excellent': {
@@ -52,6 +56,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.headRotZ = S(t * 4.2) * 0.15;
       p.mouthOpen = 0.55; p.mouthSmile = 1; p.eyeOpen = 0.85;
       p.stars = 1;
+      p.earDroop = 0; p.tail = 1;
       break;
     }
     case 'good': {
@@ -61,6 +66,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.headRotZ = 0.08;
       p.mouthSmile = 0.9; p.mouthOpen = 0.15;
       p.stars = 0.4;
+      p.earDroop = 0.15; p.tail = 0.85;
       break;
     }
     case 'fair': {
@@ -70,6 +76,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.pupilX = 0.4; p.pupilY = 0.5;
       p.mouthSmile = -0.2; p.mouthOpen = 0.05;
       p.sweat = 1;
+      p.earDroop = 0.65; p.tail = 0.15;
       break;
     }
     case 'poor': {
@@ -79,6 +86,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.eyeOpen = 0.55; p.pupilY = -0.2;
       p.mouthSmile = -0.7; p.mouthOpen = 0.12 + A(S(t * 20)) * 0.06;
       p.sweat = 0.6;
+      p.earDroop = 1; p.tail = 0;
       break;
     }
     case 'critical': {
@@ -88,6 +96,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.eyeOpen = 0.12;
       p.mouthOpen = 1; p.mouthSmile = -1;
       p.tears = 1;
+      p.earDroop = 1; p.tail = 0;
       break;
     }
     case 'offline': {
@@ -97,6 +106,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.eyeOpen = 0.08;
       p.mouthOpen = 0.2 + S(t * 1.1) * 0.08; p.mouthSmile = 0.1;
       p.zzz = 1;
+      p.earDroop = 1; p.tail = 0;
       break;
     }
     case 'startled': {
@@ -107,6 +117,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.eyeOpen = 1.35; p.pupilY = 0.1;
       p.mouthOpen = 0.9; p.mouthSmile = 0;
       p.exclaim = 1;
+      p.earDroop = 0; p.tail = 0;
       break;
     }
     case 'coverEyes': {
@@ -116,6 +127,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.pupilX = S(t * 2.5) * 0.4;
       p.mouthSmile = -0.5; p.mouthOpen = 0.1;
       p.sweat = 0.6;
+      p.earDroop = 1; p.tail = 0;
       break;
     }
     case 'facepalm': {
@@ -124,6 +136,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.headRotX = 0.45; p.headRotZ = -0.1;
       p.eyeOpen = 0.2; p.pupilY = -0.4;
       p.mouthSmile = -0.6; p.mouthOpen = 0.04;
+      p.earDroop = 0.9; p.tail = 0;
       break;
     }
     case 'shrug': {
@@ -133,6 +146,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.eyeOpen = 0.75; p.pupilX = -0.3; p.pupilY = 0.25;
       p.mouthSmile = -0.15; p.mouthOpen = 0.05;
       p.question = 1;
+      p.earDroop = 0.5; p.tail = 0.1;
       break;
     }
     case 'peek': {
@@ -141,6 +155,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.armLRotZ = 0.45;
       p.eyeOpen = 0.55; p.pupilX = -0.8;
       p.mouthSmile = -0.1; p.mouthOpen = 0.02;
+      p.earDroop = 0.1; p.tail = 0.3;
       break;
     }
     case 'cheer': {
@@ -150,6 +165,7 @@ export function computePose(state: CompanionState, t: number): Pose {
       p.headRotZ = S(t * 6) * 0.1;
       p.eyeOpen = 0.8; p.mouthOpen = 0.6; p.mouthSmile = 1;
       p.stars = 1;
+      p.earDroop = 0; p.tail = 1;
       break;
     }
   }

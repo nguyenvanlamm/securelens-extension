@@ -64,8 +64,8 @@ export interface Settings {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
-  apiBaseUrl: 'http://localhost:8000',
-  webBaseUrl: 'http://localhost:5173',
+  apiBaseUrl: 'https://securelens-yz6r.onrender.com',
+  webBaseUrl: 'https://securelen.lamnv.com',
 };
 
 /** Animation states for the 3D companion. */
