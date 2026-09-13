@@ -1,0 +1,36 @@
+{
+  "name": "securelens-extension",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Chrome extension: security posture of the current tab, narrated by a 3D robot-cat companion. Companion app to SecureLens.",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "zip": "npm run build && cd dist && zip -r ../securelens-extension.zip ."
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@react-three/fiber": "^8.18.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.2.9",
+    "@types/node": "^22.20.2",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@types/three": "^0.170.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.6.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.3",
+    "vitest": "^2.1.9"
+  }
+}

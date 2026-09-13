@@ -1,0 +1,47 @@
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  margin: 0;
+  background: #ffffff;
+  color: #000000;
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.popup {
+  width: 384px;
+  min-height: 560px;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+/* fine hairline grid texture behind the hero — depth without colour */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+  mask-image: radial-gradient(ellipse at 50% 55%, #000 45%, transparent 100%);
+}
+
+.scroll-thin { scrollbar-width: thin; scrollbar-color: #d1d5db transparent; }
+.scroll-thin::-webkit-scrollbar { width: 6px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+
+:focus-visible { outline: 2px solid #22c55e; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise { animation: none; }
+}
